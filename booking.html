@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Travel Guide - Booking Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #010609;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('C:/Users/Greeshma/OneDrive/Desktop/VOYAGE/home.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: -1;
+        }
+        header {
+            position: relative;
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .header-container {
+            text-align: center;
+            background-color: rgba(143, 202, 236, 0.9);
+            padding: 20px 0;
+        }
+        img {
+            height:80px;
+        }
+        .btn {
+            margin-right:50px; 
+        }
+        header {
+            width: 100%;
+            position: relative;
+            height: 80px;
+            background-color: rgb(143, 202, 236);
+        }
+        .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        img {
+            height:80px;
+        }
+        header h1 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin: 0;
+            padding-top: 10px;
+        }
+        .container {
+            max-width: 900px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px auto;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            position: relative;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .summary-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-item {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.PNG" alt="Your Logo">
+        </div>
+        <h1 style="color: black; font-weight: bold;">Start your booking!</h1>
+    </header>
+    <div class="container">
+        <h2>Book Your Trip</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="source">Source:</label>
+                <input type="text" id="source" name="source" placeholder="Enter your source location" required>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" placeholder="Enter your destination" required>
+            </div>
+            <div class="form-group">
+                <label for="travelDate">Travel Date:</label>
+                <input type="date" id="travelDate" name="travelDate" required>
+            </div>
+            <div class="form-group">
+                <label for="passengers">Number of Passengers:</label>
+                <select id="passengers" name="passengers" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="transportMode">Preferred Mode of Transport:</label>
+                <select id="transportMode" name="transportMode" required>
+                    <option value="air">Air</option>
+                    <option value="train">Train</option>
+                    <option value="bus">Bus</option>
+                    <option value="car">Car</option>
+                </select>
+            </div>
+            <h2>Additional Booking Options</h2>
+            <div class="form-group">
+                <label for="accommodation">Accommodation Type:</label>
+                <select id="accommodation" name="accommodation" required>
+                    <option value="hotel">Hotel</option>
+                    <option value="hostel">Hostel</option>
+                    <option value="guesthouse">Guesthouse</option>
+                    <option value="resort">Resort</option>
+                    <option value="apartment">Apartment</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="meals">Meal Preferences:</label>
+                <select id="meals" name="meals" required>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="non-vegetarian">Non-Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Gluten-Free</option>
+                    <option value="no-preference">No Preference</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="insurance">Do You Want Travel Insurance?</label>
+                <select id="insurance" name="insurance" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" onclick="displayBookingSummary()">Confirm Booking</button>
+            </div>
+        </form>
+        <div id="bookingSummary" class="summary-container" style="display: none;">
+            <h2>Booking Summary</h2>
+            <div class="summary-item"><strong>Source:</strong> <span id="summarySource"></span></div>
+            <div class="summary-item"><strong>Destination:</strong> <span id="summaryDestination"></span></div>
+            <div class="summary-item"><strong>Travel Date:</strong> <span id="summaryTravelDate"></span></div>
+            <div class="summary-item"><strong>Number of Passengers:</strong> <span id="summaryPassengers"></span></div>
+            <div class="summary-item"><strong>Mode of Transport:</strong> <span id="summaryTransportMode"></span></div>
+            <div class="summary-item"><strong>Accommodation:</strong> <span id="summaryAccommodation"></span></div>
+            <div class="summary-item"><strong>Meal Preferences:</strong> <span id="summaryMeals"></span></div>
+            <div class="summary-item"><strong>Travel Insurance:</strong> <span id="summaryInsurance"></span></div>
+            
+            <!-- Using a link to navigate to payment page -->
+            <center>
+                <a href="C:\Users\Greeshma\OneDrive\Desktop\VOYAGE\payment.html">
+                    <button type="button">Payment</button>
+                </a>
+            </center>
+        </div>
+        
+        
+    </div>
+    <script>
+        function displayBookingSummary() {
+            event.preventDefault();
+            const source = document.getElementById('source').value;
+            const destination = document.getElementById('destination').value;
+            const travelDate = document.getElementById('travelDate').value;
+            const passengers = document.getElementById('passengers').value;
+            const transportMode = document.getElementById('transportMode').value;
+            const accommodation = document.getElementById('accommodation').value;
+            const meals = document.getElementById('meals').value;
+            const insurance = document.getElementById('insurance').value;
+
+            document.getElementById('summarySource').textContent = source;
+            document.getElementById('summaryDestination').textContent = destination;
+            document.getElementById('summaryTravelDate').textContent = travelDate;
+            document.getElementById('summaryPassengers').textContent = passengers;
+            document.getElementById('summaryTransportMode').textContent = transportMode;
+            document.getElementById('summaryAccommodation').textContent = accommodation;
+            document.getElementById('summaryMeals').textContent = meals;
+            document.getElementById('summaryInsurance').textContent = insurance;
+
+            document.getElementById('bookingSummary').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

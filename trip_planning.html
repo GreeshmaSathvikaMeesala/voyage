@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            
+        }
+        .background {
+            position:fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('home.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: -1;
+            background-attachment: fixed;
+        }
+
+        .weather-container, .medication-tips-container {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 50px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2, h4 {
+            margin-bottom: 20px;
+        }
+
+        .input-group input, .input-group button {
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        #weatherResult, #medicationTips {
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 1.1em;
+        }
+
+        .weather-info {
+            font-size: 1.2em;
+        }
+
+        .tips-section {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-sm-12">
+                <div class="weather-container">
+                    <h2 class="text-center">Weather Forecast</h2>
+                    <form id="weatherForm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="cityInput" placeholder="Enter city name" required>
+                            <button class="btn btn-primary" type="submit">Get Weather</button>
+                        </div>
+                    </form>
+                    <div id="weatherResult"></div>
+                </div>
+
+                <div class="medication-tips-container">
+                    <h2 class="text-center">Medication Tips</h2>
+                    <button id="getMedicationTips" class="btn btn-secondary w-100">Get Medication Tips</button>
+                    <div id="medicationTips"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let weatherData = {};
+
+        document.getElementById('weatherForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const cityName = document.getElementById('cityInput').value;
+            const apiKey = '0166a05fbd8db4ab816c3b741afefef0';
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod === '404') {
+                        document.getElementById('weatherResult').innerHTML = `<p class="error-message">City not found. Please try again.</p>`;
+                    } else {
+                        weatherData = data;
+                        const weatherHtml = `
+                            <div class="weather-info">
+                                <h3>${data.name}, ${data.sys.country}</h3>
+                                <h4>${data.weather[0].description}</h4>
+                                <p><strong>Temperature:</strong> ${data.main.temp}°C</p>
+                                <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+                                <p><strong>Wind Speed:</strong> ${data.wind.speed} m/s</p>
+                            </div>
+                        `;
+                        document.getElementById('weatherResult').innerHTML = weatherHtml;
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('weatherResult').innerHTML = `<p class="error-message">An error occurred. Please try again later.</p>`;
+                });
+        });
+
+        document.getElementById('getMedicationTips').addEventListener('click', function () {
+            if (!weatherData || !weatherData.weather || !weatherData.main) {
+                document.getElementById('medicationTips').innerHTML = `<p class="error-message">Please fetch weather data first!</p>`;
+                return;
+            }
+
+            const weatherCondition = weatherData.weather[0].main.toLowerCase();
+            const medicationTips = generateMedicationTips(weatherCondition);
+            document.getElementById('medicationTips').innerHTML = medicationTips;
+        });
+
+        function generateMedicationTips(weatherCondition) {
+            const tips = {
+                mist: [
+                    "Wear a mask to avoid inhaling mist particles.",
+                    "Use a humidifier indoors to maintain air quality.",
+                    "Carry cough drops and a water bottle.",
+                    "Avoid outdoor activities early in the morning.",
+                    "Keep warm and wear breathable fabrics.",
+                    "Take Vitamin C to boost immunity.",
+                    "Avoid driving unless necessary due to low visibility.",
+                    "Keep allergy medications on hand.",
+                    "Drink herbal teas to soothe the throat.",
+                    "Use moisturizing lotions to prevent dry skin."
+                ],
+                smoke:[
+                    "Wear a mask to avoid inhaling mist particles.",
+                    "Use a humidifier indoors to maintain air quality.",
+                    "Carry cough drops and a water bottle.",
+                    "Avoid outdoor activities early in the morning.",
+                    "Keep warm and wear breathable fabrics.",
+                    "Take Vitamin C to boost immunity.",
+                    "Avoid driving unless necessary due to low visibility.",
+                    "Keep allergy medications on hand.",
+                    "Drink herbal teas to soothe the throat.",
+                    "Use moisturizing lotions to prevent dry skin."
+                ],
+                rain: [
+                    "Carry a sturdy umbrella and waterproof shoes.",
+                    "Avoid walking in standing water.",
+                    "Keep your feet dry to avoid fungal infections.",
+                    "Take Vitamin C supplements to boost immunity.",
+                    "Drink warm fluids like herbal tea or soup.",
+                    "Wear light, water-resistant clothing.",
+                    "Keep a first aid kit handy for emergencies.",
+                    "Avoid using electrical devices outdoors.",
+                    "Keep essential medications dry and stored properly.",
+                    "Stay indoors during heavy rainstorms."
+                ],
+                clear: [
+                    "Use sunscreen with SPF 30 or higher.",
+                    "Stay hydrated with plenty of water.",
+                    "Wear sunglasses to protect your eyes.",
+                    "Avoid outdoor activities during peak sunlight hours.",
+                    "Wear lightweight and breathable clothing.",
+                    "Carry a water bottle everywhere.",
+                    "Avoid sugary drinks to stay cool.",
+                    "Use cooling wipes or wet towels.",
+                    "Apply moisturizer to prevent dry skin.",
+                    "Take frequent breaks if exercising outdoors."
+                ],
+                snow: [
+                    "Wear insulated, waterproof clothing.",
+                    "Moisturize to prevent dry skin.",
+                    "Drink warm fluids to maintain body heat.",
+                    "Protect your ears, hands, and feet from frostbite.",
+                    "Use a humidifier indoors.",
+                    "Keep a first-aid kit in your car.",
+                    "Use lip balm to avoid chapped lips.",
+                    "Avoid staying outdoors for long durations.",
+                    "Carry energy snacks when traveling.",
+                    "Get flu vaccinations as needed."
+                ],
+                thunderstorm: [
+                    "Stay indoors during thunderstorms.",
+                    "Unplug electrical devices during lightning strikes.",
+                    "Keep emergency medications handy.",
+                    "Stock essential items in case of power outages.",
+                    "Avoid driving during storms.",
+                    "Check weather alerts regularly.",
+                    "Carry a flashlight and extra batteries.",
+                    "Avoid open areas and tall trees.",
+                    "Wear protective gear if needed.",
+                    "Keep important documents waterproofed."
+                ],
+                haze: [
+                    "Avoid outdoor activities, especially strenuous exercise.",
+                    "Use an air purifier indoors.",
+                    "Wear a mask to reduce exposure to polluted air.",
+                    "Stay hydrated to help your respiratory system.",
+                    "Keep windows and doors closed to limit outdoor air exposure.",
+                    "Use eye drops if your eyes are irritated.",
+                    "Limit exposure to the sun as haze can increase UV levels.",
+                    "Check air quality reports regularly.",
+                    "Take medications for respiratory conditions as needed.",
+                    "Avoid using air conditioning that draws in outside air."
+                ],
+                drizzle: [
+                    "Carry an umbrella or raincoat.",
+                    "Avoid slippery areas to prevent falls.",
+                    "Wear waterproof shoes or boots.",
+                    "Take Vitamin C to prevent cold symptoms.",
+                    "Keep essential items like your phone dry.",
+                    "If driving, keep your headlights on for better visibility.",
+                    "Drink warm fluids to stay comfortable.",
+                    "Avoid staying outside too long in persistent drizzle.",
+                    "Wear lightweight clothing to avoid feeling damp.",
+                    "Use anti-chafing creams to prevent skin irritation."
+                ],
+                cloudy: [
+                    "Dress in layers as temperatures can vary.",
+                    "Carry a light jacket or sweater.",
+                    "Avoid staying outdoors for extended periods if it feels damp.",
+                    "Be cautious on the roads as low visibility can occur.",
+                    "Stay hydrated, especially if it's chilly and dry.",
+                    "Use moisturizing lotion to prevent dry skin.",
+                    "Wear sunglasses to protect your eyes from hidden UV rays.",
+                    "Keep your phone charged in case of emergency weather changes.",
+                    "Consider wearing comfortable shoes for walking in cooler weather.",
+                    "Drink warm beverages to stay cozy."
+                ]
+            };
+
+            // Check if weatherCondition matches any cloud-related conditions
+            if (weatherCondition.includes("cloud")) {
+                weatherCondition = "cloudy";
+            }
+
+            return `
+                <div class="tips-section">
+                    <h4>Health & Medication Tips for ${weatherCondition.charAt(0).toUpperCase() + weatherCondition.slice(1)}</h4>
+                    <ul>
+                        ${tips[weatherCondition]?.map(tip => `<li>${tip}</li>`).join('') || "<li>No specific tips available.</li>"}
+                    </ul>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

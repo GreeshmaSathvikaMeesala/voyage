@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps Example</title>
+
+  <!-- Internal CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+      display: none; /* Hide the map initially */
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Google Maps Display</h1>
+    <button id="show-map-btn">Show Map</button>
+    <div id="map"></div>
+  </div>
+
+  <!-- Load Google Maps API (replace 'YOUR_API_KEY' with your actual API key) -->
+  <script asyncY
+    src="https://maps.googleapis.com/maps/api/js?key=c6050bfbf14a46a8a35fd9d6b51f8af6&callback=initMap">
+  </script>
+
+  <!-- JavaScript -->
+  <script>
+    let map;
+
+    function initMap() {
+      // Ensure the map initializes properly
+      console.log("Google Maps API Loaded");
+
+      // Coordinates for the map center (New York)
+      const centerCoordinates = { lat: 40.7128, lng: -74.0060 };
+
+      // Create a new map object
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: centerCoordinates,
+      });
+
+      // Add a marker to the map
+      const marker = new google.maps.Marker({
+        position: centerCoordinates,
+        map: map,
+        title: "New York City",
+      });
+    }
+
+    // Show the map when the button is clicked
+    document.getElementById("show-map-btn").addEventListener("click", function() {
+      // Show the map div
+      document.getElementById("map").style.display = "block";
+
+      // Initialize the map (this will be called only if the API is successfully loaded)
+      if (typeof google !== "undefined" && google.maps) {
+        initMap();
+      } else {
+        console.error("Google Maps API failed to load.");
+      }
+
+      // Hide the button after clicking
+      this.style.display = "none";
+    });
+  </script>
+</body>
+</html>

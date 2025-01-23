@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VOYAGE</title>
+    <meta charset="UTF-8">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1 {
+            color: #0a52c7;
+            line-height: 80px;
+        }
+
+        .top-align {
+            font-size: 20px;
+            vertical-align: top;
+        }
+
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('home.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: -1;
+            background-attachment: fixed;
+        }
+
+        header {
+            width: 100%;
+            position: relative;
+            padding: 20px;
+            background-color: rgb(143, 202, 236);
+            line-height: 40px;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        img {
+            height: 80px;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+            list-style-type: none;
+        }
+
+        nav li {
+            margin: 0 5px;
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 100px 50px;
+            position: relative;
+            min-height: 100vh;
+            margin-right: 20px;
+        }
+
+        .text {
+            max-width: 600px;
+            margin-right: 100px;
+        }
+
+        .text h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #307699;
+            margin-bottom: 15px;
+        }
+
+        .text h2 {
+            font-size: 36px;
+            color: #dfbcbc;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .text p {
+            font-size: 18px;
+            color: #D8D2C2;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: #71cae1;
+            padding: 12px 20px;
+            margin-right: 40px;
+            border-radius: 25px;
+            border: 2px solid #7fd2e6;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #FF6347;
+            color: white;
+        }
+
+        .images {
+            position: relative;
+            max-width: 700px;
+        }
+
+        .large-img {
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 6px solid #7da0b1;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            height: 200px;
+            z-index: 1;
+        }
+
+        .small-img {
+            width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 6px solid #7da0b1;
+            position: absolute;
+            top: -300px;
+            right: 150px;
+            height: 400px;
+            z-index: 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 43, 43, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #F5F5F5;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: #2196f3;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .modal-content ul {
+            margin-top: 1rem;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .modal-content ul li {
+            margin: 0.5rem 0;
+        }
+
+        .modal-content ul li::before {
+            content: '✔ ';
+            color: #2196f3;
+            font-weight: bold;
+        }
+
+        .close-about {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-about:hover {
+            color: #f44336;
+        }
+
+        .close-contact {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-contact:hover {
+            color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+        <div class="logo-container">
+            <img src="LOGO.PNG" alt="Your Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="javascript:void(0);" id="aboutBtn">About Us</a></li>
+                <li><a href="C:\Users\Greeshma\OneDrive\Desktop\VOYAGE\pricing.html">Pricing</a></li>
+                <li><a href="javascript:void(0);" id="contactBtn">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="text">
+            <h1>Find Your Perfect Getaway</h1>
+            <h2>Discover the World's Best Kept Secrets</h2>
+            <p>Make your travel more enjoyable with us. We are the best travel agency and we are providing the best travel services for our clients.</p>
+            <div class="buttons">
+                <a href="trip_planning.html">
+                    <button type="submit" class="btn">Medications</button>
+                </a>
+                <a href="booking.html">
+                    <button type="submit" class="btn">Book Now</button>
+                </a>
+            </div>
+        </div>
+        <div class="images">
+            <img src="venice.jpg" alt="Travel Image 1" class="large-img">
+            <img src="switz.jpg" alt="Travel Image 2" class="small-img">
+        </div>
+    </section>
+
+    <div class="modal" id="aboutModal">
+        <div class="modal-content" style="background-color: #a9ccd2;">
+            <h2 style="color: black;font-weight: bold;">About Travelling Guide</h2>
+            <p>VOYAGE Travel Agency is a comprehensive and user-friendly platform designed to help travelers effortlessly plan and manage their trips. Our platform provides an intuitive interface that allows users to explore various destinations, make bookings, and receive personalized travel recommendations. Whether you're seeking adventure, relaxation, or a cultural experience, VOYAGE is here to help you every step of the way.</p>
+            <h3 style="font-weight: bold;">Key Features</h3>
+            <ul>
+                <li>Customized trip planning and suggestions based on user preferences</li>
+                <li>Real-time booking for flights, hotels, and activities</li>
+                <li>Secure payment processing for a smooth booking experience</li>
+                <li>Personalized itineraries and detailed travel guides</li>
+                <li>24/7 customer support to assist with all your travel needs</li>
+                <li>Instant updates on trip details, bookings, and weather alerts</li>
+                <li>Access to exclusive deals, discounts, and special travel packages</li>
+            </ul>
+        </div>    
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content" style="background-color: #a9ccd2;">
+            <h2 style="color: black; font-weight: bold;">Contact Us</h2>
+            <p>If you have any questions or need assistance, feel free to contact us. We're here to help!</p>
+            <h3 style="font-weight: bold;">Contact Information</h3>
+            <ul>
+                <li>Email: support@voyage.com</li>
+                <li>Phone: +1 800-123-4567</li>
+                <li>Address: 123 Travel St, Adventure City</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        var aboutModal = document.getElementById('aboutModal');
+        var aboutBtn = document.getElementById('aboutBtn');
+        var contactModal = document.getElementById('contactModal');
+        var contactBtn = document.getElementById('contactBtn');
+
+        aboutBtn.onclick = function() {
+            aboutModal.style.display = 'flex';
+        }
+
+        contactBtn.onclick = function() {
+            contactModal.style.display = 'flex';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == aboutModal || event.target == contactModal) {
+                aboutModal.style.display = 'none';
+                contactModal.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

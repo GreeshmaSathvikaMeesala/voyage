@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Guide - Transport Pricing</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      background-color: #f4f4f4;
+    }
+
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('home.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      background-color: rgba(143, 202, 236, 0.9);
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      height: 80px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: black;
+      margin: 0;
+      padding-top: 10px;
+      align-content: center;
+    }
+
+    .logo-container {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+
+    header img {
+      height: 80px;
+    }
+
+    nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      list-style-type: none;
+    }
+
+    nav li {
+      margin: 0 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #007bff;
+    }
+
+    #pricing {
+      max-width: 1200px;
+      margin: 100px auto 20px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .pricing-category {
+      margin-bottom: 40px;
+      padding: 20px;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .pricing-category:last-child {
+      border-bottom: none;
+    }
+
+    h2 {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+      transition: background-color 0.3s ease;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    footer p {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+
+  <header>
+    <div class="logo-container">
+      <img src="LOGO.PNG" alt="Your Logo">
+    </div>
+    <center>
+      <h1>Pricing Details</h1>
+    </center>
+  </header>
+
+  <section id="pricing">
+    <div class="pricing-category">
+      <h2>Air Travel</h2>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>Economy</th>
+          <th>Business</th>
+        </tr>
+        <tr>
+          <td>New York to Paris</td>
+          <td>$600</td>
+          <td>$1,500</td>
+        </tr>
+        <tr>
+          <td>London to Tokyo</td>
+          <td>$700</td>
+          <td>$1,800</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Rail Travel</h2>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>Economy</th>
+          <th>First-Class</th>
+        </tr>
+        <tr>
+          <td>Paris to Berlin</td>
+          <td>$100</td>
+          <td>$150</td>
+        </tr>
+        <tr>
+          <td>Rome to Florence</td>
+          <td>$50</td>
+          <td>$90</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Bus/Coach Services</h2>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>Standard</th>
+          <th>Luxury</th>
+        </tr>
+        <tr>
+          <td>New York to Washington D.C.</td>
+          <td>$40</td>
+          <td>$75</td>
+        </tr>
+        <tr>
+          <td>London to Edinburgh</td>
+          <td>$30</td>
+          <td>$60</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Car Rentals</h2>
+      <table>
+        <tr>
+          <th>Car Type</th>
+          <th>Daily Rate</th>
+        </tr>
+        <tr>
+          <td>Compact Car</td>
+          <td>$30/day</td>
+        </tr>
+        <tr>
+          <td>Luxury Car</td>
+          <td>$120/day</td>
+        </tr>
+        <tr>
+          <td>SUV</td>
+          <td>$80/day</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Local Transportation</h2>
+      <table>
+        <tr>
+          <th>Service</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Taxi (Base fare)</td>
+          <td>$3 + $2/mile</td>
+        </tr>
+        <tr>
+          <td>Uber (within city, 5 miles)</td>
+          <td>$10</td>
+        </tr>
+        <tr>
+          <td>Subway</td>
+          <td>$2 per ride</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Cruise Pricing</h2>
+      <table>
+        <tr>
+          <th>Route</th>
+          <th>Inside Cabin</th>
+          <th>Ocean-view Cabin</th>
+          <th>Balcony Cabin</th>
+        </tr>
+        <tr>
+          <td>Mediterranean (7 days)</td>
+          <td>$1,000</td>
+          <td>$1,500</td>
+          <td>$2,000</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pricing-category">
+      <h2>Private Transfers</h2>
+      <table>
+        <tr>
+          <th>Service</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Airport to Hotel (Private Transfer)</td>
+          <td>$50 - $200</td>
+        </tr>
+        <tr>
+          <td>Chauffeur (Full Day)</td>
+          <td>$300/day</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Travel Guide. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
